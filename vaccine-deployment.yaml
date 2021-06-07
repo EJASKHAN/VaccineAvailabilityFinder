@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaccine-identifier
+  namespace: misc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaccine-identifier
+      component: app
+  template:
+    metadata:
+      labels:
+        app: vaccine-identifier
+        component: app
+    spec:
+      imagePullSecrets:
+        - name: vaccinesecret
+      containers:
+        - name: vaccine-identifier
+          image: <<yourImageUrl>>
+          imagePullPolicy: Always
